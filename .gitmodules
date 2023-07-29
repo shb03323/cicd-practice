@@ -1,0 +1,3 @@
+[submodule "sub-module"]
+	path = sub-module
+	url = https://github.com/shb03323/sub-module.git
