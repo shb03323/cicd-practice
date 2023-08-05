@@ -1,4 +1,4 @@
-name: ci
+name: continuous-integration
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -17,11 +17,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@@v2.6.0
-      with:
-        arguments: build
-
     - name: Make application-dev.yml
       if: contains(github.ref, 'dev')
       run: |
@@ -29,3 +24,8 @@ jobs:
         touch ./application-dev.yml
         echo "${{ secrets.PROPERTIES_DEV }} > ./application-dev.yml
       shell: bash
+
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@v2.6.0
+      with:
+        arguments: build
