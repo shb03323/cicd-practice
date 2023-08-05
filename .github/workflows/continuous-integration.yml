@@ -18,7 +18,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Make application-dev.yml
-      if: contains(github.ref, 'dev')
+      if: contains(github.ref, 'main')
       run: |
         cd ./src/main/resources
         touch ./application-dev.yml
