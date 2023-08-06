@@ -18,7 +18,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Make application-dev.yml
-        if: ${{ github.event.pull_request.head.ref == 'dev' }}
+        if: ${{ github.event.push.head.ref == 'dev' }}
         env:
           PROPERTIES_DEV: ${{ secrets.PROPERTIES_DEV }}
         run: |
@@ -43,7 +43,6 @@ jobs:
 
       - name: Docker Image Build
         run: |
-          cd cicd
           docker build --platform linux/x64/v8 -t shb03323/cicd -f Dockerfile .
 
       - name: Docker Hub Push
