@@ -18,7 +18,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Make application-dev.yml
-        if: ${{ github.event.push.head.ref == 'dev' }}
+        if: ${{ github.event.push.head.ref == 'main' }}
         env:
           PROPERTIES_DEV: ${{ secrets.PROPERTIES_DEV }}
         run: |
@@ -50,7 +50,7 @@ jobs:
 
   cd:
     needs: ci
-    runs-on: [ self-hosted, Linux, ARM64 ]
+    runs-on: [ self-hosted, Linux, X64 ]
 
     steps:
       - name: Pull Latest Docker Image
