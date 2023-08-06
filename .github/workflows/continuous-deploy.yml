@@ -43,7 +43,7 @@ jobs:
 
       - name: Docker Image Build
         run: |
-          cd backend/baton
+          cd cicd
           docker build --platform linux/x64/v8 -t shb03323/cicd -f Dockerfile .
 
       - name: Docker Hub Push
