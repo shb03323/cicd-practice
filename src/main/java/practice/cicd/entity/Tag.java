@@ -27,8 +27,9 @@ public class Tag {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false)
-    private int tagCount;
+    public Tag(final String name) {
+        this(null, name);
+    }
 
     @Override
     public final boolean equals(final Object o) {
