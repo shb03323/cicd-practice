@@ -27,9 +27,13 @@ public class PostTag {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "post_id", nullable = false)
-    private Post runnerPost;
+    private Post post;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "tag_id", nullable = false)
     private Tag tag;
+
+    public PostTag(final Post post, final Tag tag) {
+        this(null, post, tag);
+    }
 }

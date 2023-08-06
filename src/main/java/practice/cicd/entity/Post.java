@@ -4,17 +4,23 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import static jakarta.persistence.CascadeType.PERSIST;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor
 @Entity
 public class Post {
 
@@ -23,25 +29,20 @@ public class Post {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String title;
 
     @Column(nullable = false)
-    private String nickname;
+    private String contents;
 
-    @Column(nullable = false)
-    private int age;
+    @OneToMany(mappedBy = "post", cascade = PERSIST, orphanRemoval = true)
+    private final Set<PostTag> postTags = new HashSet<>();
 
-    public Post(final String name, final String nickname, final int age) {
-        this.name = name;
-        this.nickname = nickname;
-        this.age = age;
-        validateNickname(nickname);
+    public Post(final String title, final String contents) {
+        this(null, title, contents);
     }
 
-    private void validateNickname(final String nickname) {
-        if (nickname.length() > 4) {
-            throw new IllegalArgumentException("닉네임의 길이는 4를 초과할 수 없습니다.");
-        }
+    public void addPostTag(final PostTag postTag) {
+        postTags.add(postTag);
     }
 
     @Override
