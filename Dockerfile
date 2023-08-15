@@ -1,7 +1,5 @@
 FROM amazoncorretto:17
 
-WORKDIR /app
-
-COPY ./build/libs/cicd-0.0.1-SNAPSHOT.jar /app/cicd.jar
+COPY build/libs/cicd-0.0.1-SNAPSHOT.jar cicd.jar
 
 CMD ["java", "-jar", "-Dspring.profiles.active=dev", "cicd.jar"]
