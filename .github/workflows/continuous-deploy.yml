@@ -43,14 +43,14 @@ jobs:
 
       - name: Docker Image Build
         run: |
-          docker build --platform linux/arm64/v8 -t shb03323/cicd -f Dockerfile .
+          docker build --platform linux/X64/v8 -t shb03323/cicd -f Dockerfile .
 
       - name: Docker Hub Push
         run: docker push shb03323/cicd
 
   cd:
     needs: ci
-    runs-on: [ self-hosted, Linux, ARM64, X64 ]
+    runs-on: [ self-hosted, Linux, X64 ]
 
     steps:
       - name: Pull Latest Docker Image
