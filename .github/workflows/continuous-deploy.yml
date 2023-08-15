@@ -43,7 +43,7 @@ jobs:
 
       - name: Docker Image Build
         run: |
-          docker build --platform linux/amd64 -t shb03323/cicd -f Dockerfile .
+          docker buildx build --platform linux/amd64 -t shb03323/cicd -f Dockerfile .
 
       - name: Docker Hub Push
         run: docker push shb03323/cicd
