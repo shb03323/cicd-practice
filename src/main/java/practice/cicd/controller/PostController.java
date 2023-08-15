@@ -23,7 +23,7 @@ public class PostController {
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody PostCreateRequest request) {
         final Post post = postService.createPost(request);
-        final URI redirectUri = UriComponentsBuilder.fromPath("/posts/runner")
+        final URI redirectUri = UriComponentsBuilder.fromPath("/posts")
                 .path("/{id}")
                 .buildAndExpand(post.getId())
                 .toUri();

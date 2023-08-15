@@ -7,6 +7,14 @@ spring:
 #        format_sql: true
     hibernate:
       ddl-auto: create
+  docker:
+    compose:
+      enabled: off
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/ditoo_dev
+    username: root
+    password: root
 
 management:
   endpoints:
@@ -14,4 +22,4 @@ management:
       exposure:
         include: prometheus
 logging:
-  config: classpath:log4j2.xml
+  config: classpath:log4j22.xml
