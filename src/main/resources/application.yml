@@ -4,15 +4,15 @@ spring:
   jpa:
     properties:
       hibernate:
-#        format_sql: true
+        format_sql: true
     hibernate:
       ddl-auto: create
   docker:
     compose:
       enabled: off
   datasource:
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mysql://localhost:3306/ditoo_dev
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ditoo_dev
     username: root
     password: root
 
@@ -23,3 +23,7 @@ management:
         include: prometheus
 logging:
   config: classpath:log4j22.xml
+#  level:
+#    org.hibernate.SQL: debug
+#    org.hibernate.orm.jdbc.bind: trace
+
